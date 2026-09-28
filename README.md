@@ -27,6 +27,26 @@ python manage.py runserver
 
 You can now browse the [API](http://localhost:8000/api/) or start on the [landing page](http://localhost:8000/).
 
+## Run the app on Kubernetes with Kind
+
+The repository includes a Helm chart for the ToDo app and its MySQL sub-chart. With Docker running and `kind`, `kubectl`, and Helm installed, run the bootstrap script from the repository root:
+
+```bash
+chmod +x bootstrap.sh
+./bootstrap.sh
+```
+
+The script creates the `kind` cluster if needed, prepares the MySQL worker nodes, installs the ingress-nginx controller, and installs or upgrades the Helm release. The app is available at <http://localhost:30007>.
+
+To apply chart changes directly, use:
+
+```bash
+helm upgrade --install todoapp-release .infrastructure/helm-chart/todoapp \
+  --namespace todoapp --create-namespace --wait --timeout 5m
+```
+
+See [INSTRUCTION.md](INSTRUCTION.md) for deployment checks, troubleshooting commands, and how to refresh `output.log`.
+
 ## Task
 
 Create a Kubernetes manifest for a pod that will contain a ToDo app container:

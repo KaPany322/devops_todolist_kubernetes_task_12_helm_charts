@@ -2,13 +2,13 @@ kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: secrets-reader
-  namespace: mateapp
+  namespace: {{ .Values.common.namespace }}
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: mateapp
+  namespace: {{ .Values.common.namespace }}
   name: secrets-reader
 rules:
 - apiGroups: [""]
@@ -20,7 +20,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: secrets-reader-binding
-  namespace: mateapp
+  namespace: {{ .Values.common.namespace }}
 subjects:
 - kind: ServiceAccount
   name: secrets-reader
