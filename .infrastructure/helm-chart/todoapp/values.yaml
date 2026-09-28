@@ -43,3 +43,12 @@ todoapp:
       averageUtilization: 70
     memory:
       averageUtilization: 70
+
+  pvc:
+    resources:
+      requests:
+        storage: 1Gi
+  pv:
+    capacity:
+      storage: 1Gi
+    path: /data/
