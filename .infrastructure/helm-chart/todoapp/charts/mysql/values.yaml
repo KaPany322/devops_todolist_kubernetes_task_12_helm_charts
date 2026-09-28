@@ -46,3 +46,11 @@ affinity:
               operator: In
               values:
                 - mysql
+  pvc:
+    resources:
+      requests:
+        storage: 1Gi
+  pv:
+    capacity:
+      storage: 1Gi
+    path: /data/

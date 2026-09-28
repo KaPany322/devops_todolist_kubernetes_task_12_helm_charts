@@ -10,6 +10,8 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main
 kubectl rollout status deployment/ingress-nginx-controller \
   --namespace ingress-nginx --timeout=180s
 
+helm dependency build ".infrastructure/helm-chart/todoapp"
+
 helm upgrade --install "$RELEASE_NAME" ".infrastructure/helm-chart/todoapp" \
   --namespace "$APP_NAMESPACE" --create-namespace \
   --wait --timeout 5m
